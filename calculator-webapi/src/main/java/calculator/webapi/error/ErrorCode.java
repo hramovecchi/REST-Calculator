@@ -1,5 +1,11 @@
 package calculator.webapi.error;
 
+/**
+ * Error code enumeration mapping.
+ * 
+ * @author hramovecchi@gmail.com
+ *
+ */
 public enum ErrorCode {
 	
 	NUMBERFORMATEXCEPTION(100, "Invalid parameters");

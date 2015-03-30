@@ -1,15 +1,21 @@
 package calculator.webapi.service.dto;
 
-public class ResultDTO{
+import java.io.Serializable;
+
+/**
+ * Result of the calculator operation.
+ * 
+ * @author hramovecchi@gmail.com
+ *
+ */
+public class ResultDTO implements Serializable{
 	
-	public ResultDTO(){
-	}
+	private static final long serialVersionUID = -1751462145734181105L;
+	private String result;
 	
 	public ResultDTO(String result){
 		this.setResult(result);
 	}
-	
-	private String result;
 
 	public String getResult() {
 		return result;

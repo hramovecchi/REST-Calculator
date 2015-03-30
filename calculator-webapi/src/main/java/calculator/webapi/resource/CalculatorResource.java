@@ -59,7 +59,7 @@ public class CalculatorResource {
 	}
 	
 	@GET
-	@Path("/substract/{op1}/{op2}")
+	@Path("/subtract/{op1}/{op2}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response calculateSubtract(@PathParam("op1") String op1,
 			@PathParam("op2") String op2){
@@ -68,19 +68,19 @@ public class CalculatorResource {
 	}
 	
 	@GET
-	@Path("/substract/{op1}/{op2}/{op3}")
+	@Path("/subtract/{op1}/{op2}/{op3}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response calculateSubtract(@PathParam("op1") String op1,
 			@PathParam("op2") String op2, @PathParam("op3") String op3){
 		
-		logger.info("Invoked Resource GET /substract");
+		logger.info("Invoked Resource GET /subtract");
 		
 		try {
-			ResultDTO result = calculator.substract(op1, op2, op3);
+			ResultDTO result = calculator.subtract(op1, op2, op3);
 			return Response.ok(result).build();
 
 		} catch (NumberFormatException e) {
-			logger.error("Number Format Exception on Resource GET /substract  - {}",e.getMessage());
+			logger.error("Number Format Exception on Resource GET /subtract  - {}",e.getMessage());
 			return ResponseFactory.badRequest(ErrorCode.NUMBERFORMATEXCEPTION);
 		}
 	}

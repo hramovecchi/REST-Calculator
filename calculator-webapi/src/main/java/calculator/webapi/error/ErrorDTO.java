@@ -1,5 +1,11 @@
 package calculator.webapi.error;
 
+/**
+ * Simple DTO for error responses.
+ * 
+ * @author hramovecchi@gmail.com
+ *
+ */
 public class ErrorDTO {
 	private long errorCode;
 	private String errorDescription;

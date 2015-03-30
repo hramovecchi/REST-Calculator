@@ -9,16 +9,21 @@ import org.springframework.stereotype.Component;
 import calculator.webapi.service.CalculatorService;
 import calculator.webapi.service.dto.ResultDTO;
 
+/**
+ * {@link CalculatorService} implementation using caching for duplicated requests.
+ * @author hramovecchi@gmail.com
+ *
+ */
 @Component
 public class CalculatorServiceImpl implements CalculatorService {
 	
 	private final static Logger logger = LoggerFactory.getLogger(CalculatorServiceImpl.class);
 	
 	@Override
-	@Cacheable(value="calculatorCache", key = "#root.methodName + #operand1 + '-' + #operand2 + '-' + #operand3")
+	@Cacheable(value="calculatorCache", key = "#root.methodName + #operand1 + #operand2 + #operand3")
 	public ResultDTO add(String operand1, String operand2, String operand3) throws NumberFormatException{
 		
-		logger.info("Calculator Service operation: add");
+		logger.info("Calculator Service operation: add({}+{}+{})", operand1, operand2, operand3);
 		
 		operand3 = StringUtils.isNotBlank(operand3) ? operand3 : "0";
 	
@@ -29,10 +34,10 @@ public class CalculatorServiceImpl implements CalculatorService {
 	}
 	
 	@Override
-	@Cacheable(value="calculatorCache", key = "#root.methodName + #operand1 + '-' + #operand2 + '-' + #operand3")
-	public ResultDTO substract(String operand1, String operand2, String operand3) throws NumberFormatException{
+	@Cacheable(value="calculatorCache", key = "#root.methodName + #operand1 + #operand2 + #operand3")
+	public ResultDTO subtract(String operand1, String operand2, String operand3) throws NumberFormatException{
 		
-		logger.info("Calculator Service operation: substract");
+		logger.info("Calculator Service operation: subtract({}-{}-{})", operand1, operand2, operand3);
 		
 		operand3 = StringUtils.isNotBlank(operand3) ? operand3 : "0";
 		
@@ -43,10 +48,10 @@ public class CalculatorServiceImpl implements CalculatorService {
 	}
 	
 	@Override
-	@Cacheable(value="calculatorCache", key = "#root.methodName + #operand1 + '-' + #operand2 + '-' + #operand3")
+	@Cacheable(value="calculatorCache", key = "#root.methodName + #operand1 + #operand2 + #operand3")
 	public ResultDTO multiply(String operand1, String operand2, String operand3) throws NumberFormatException{
 		
-		logger.info("Calculator Service operation: multiply");
+		logger.info("Calculator Service operation: multiply({}*{}*{})", operand1, operand2, operand3);
 		
 		operand3 = StringUtils.isNotBlank(operand3) ? operand3 : "1";
 		
@@ -57,10 +62,10 @@ public class CalculatorServiceImpl implements CalculatorService {
 	}
 	
 	@Override
-	@Cacheable(value="calculatorCache", key = "#root.methodName + #operand1 + '-' + #operand2")
+	@Cacheable(value="calculatorCache", key = "#root.methodName + #operand1 + #operand2")
 	public ResultDTO divide(String operand1, String operand2) throws NumberFormatException{
 		
-		logger.info("Calculator Service operation: divide");
+		logger.info("Calculator Service operation: divide({}/{})", operand1, operand2);
 		
 		double result = Double.valueOf(operand1).doubleValue() / Double.valueOf(operand2).doubleValue();
 
